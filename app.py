@@ -11,7 +11,6 @@ st.set_page_config(
 )
 
 # --- PASSWORD PROTECTION (Vibe Coding Feature) ---
-# We use diary data to check if a password has been initialized
 data_check = load_data()
 if "profile" not in data_check:
     data_check["profile"] = {}
@@ -19,7 +18,6 @@ profile_data = data_check["profile"]
 
 if "password" not in profile_data:
     st.title("🔒 Secure Your Thoughts")
-    st.subheader("Welcome to your vibe coding playground!")
     st.write("Let's initialize a master password to keep your diary completely secret.")
     
     new_pass = st.text_input("Create your secret password", type="password")
@@ -27,15 +25,9 @@ if "password" not in profile_data:
     
     if st.button("Set Master Key 🔑", use_container_width=True):
         if new_pass and new_pass == confirm_pass:
-            # We save it into our storage profile
             import json
             import os
-            # Simple direct update to the backend storage with a safety check
-            if "profile" not in data_check:
-                data_check["profile"] = {}
-
             data_check["profile"]["password"] = new_pass
-            # Just writing it directly to the JSON file being used by diary.py
             with open("diary_db.json" if os.path.exists("diary_db.json") else "diary.json", "w") as f:
                 json.dump(data_check, f, indent=4)
             st.success("Password secured perfectly! Reloading...")
@@ -61,37 +53,8 @@ else:
                 st.error("Access Denied. Wrong password vibe.")
         st.stop()
 
-
-# --- SIDEBAR THEME SELECTOR & STATS ---
+# --- Sidebar Features ---
 st.sidebar.title("📔 Anwesha's Secret Diary")
-st.sidebar.markdown("---")
-
-# VIBE FEATURE: DYNAMIC CUSTOM THEME INJECTOR
-st.sidebar.subheader("🎨 Visual Vibe")
-theme_choice = st.sidebar.selectbox(
-    "Choose your style mood", 
-    ["Default Dark 🌌", "Cyberpunk Neon 💜", "Pastel Dream 🌸"]
-)
-
-# Custom CSS theme engines
-if theme_choice == "Cyberpunk Neon 💜":
-    st.markdown("""
-        <style>
-        .stApp { background-color: #0d0116; color: #00ffcc; }
-        h1, h2, h3, label, p { color: #ff007f !important; text-shadow: 0 0 10px #ff007f; }
-        .stButton>button { background-color: #ff007f !important; color: white !important; border-radius: 8px; border: 1px solid #00ffcc; }
-        </style>
-    """, unsafe_html=True)
-    
-elif theme_choice == "Pastel Dream 🌸":
-    st.markdown("""
-        <style>
-        .stApp { background-color: #fff0f5; color: #4a4a4a; }
-        h1, h2, h3 { color: #ffb6c1 !important; }
-        .stButton>button { background-color: #ffb6c1 !important; color: white !important; border-radius: 20px; }
-        </style>
-    """, unsafe_html=True)
-
 st.sidebar.markdown("---")
 st.sidebar.subheader("Dashboard")
 
@@ -127,26 +90,25 @@ with tab_write:
     entry_content = st.text_area(
         "What's on your mind today?",
         value=default_content, 
-        height=250,
+        height=300,
         placeholder="Start writing here...",
         key="new_entry_content"
     )
     
-    # Mood Selector & Track of the Day Side-by-Side
-    col1, col2 = st.columns([2, 1])
-    with col1:
-        mood_options = ["😃 Happy", "🛠️ Productive", "😴 Tired", "🧠 Reflective", "😐 Neutral", "😔 Sad"]
-        selected_mood = st.selectbox("How are you feeling?", mood_options, key="mood_selector")
-    with col2:
-        selected_song = st.text_input("🎵 Track of the Day", placeholder="Song - Artist", key="song_selector")
+    # Mood Selector
+    mood_options = ["😃 Happy", "🛠️ Productive", "😴 Tired", "🧠 Reflective", "😐 Neutral", "😔 Sad"]
+    selected_mood = st.radio(
+        "How are you feeling?",
+        mood_options,
+        horizontal=True,
+        key="mood_selector"
+    )
     
-    if st.button("Save to JSON", type="primary", use_container_width=True): 
+    if st.button("Save to JSON", type="primary"): 
         if entry_content.strip():
-            # Combine mood and song strings into data for clean storage extraction
-            song_tag = f" | 🎵 Jamming to: {selected_song}" if selected_song else ""
-            combined_content = f"[MOOD: {selected_mood}{song_tag}]\n\n{entry_content.strip()}"
-            
+            combined_content = f"[MOOD: {selected_mood}]\n\n{entry_content.strip()}"
             add_entry(combined_content)
+            
             st.balloons()
             timestamp = datetime.now().strftime("%H:%M:%S")
             st.success(f"Entry saved successfully with timestamp: {timestamp}!")
@@ -174,13 +136,13 @@ with tab_view:
             st.info("No entries found matching your search query.")
         else:
             for entry in reversed(filtered_entries):
-                content = entry['content']
+                with st.expander(f"**{entry['timestamp']}**"): 
+                    content = entry['content']
 
-                # Clean layout details: parsing mood/songs
-                mood_match = re.search(r"\[MOOD: (.*?)\]", content) 
-                display_details = mood_match.group(1) if mood_match else "N/A" 
+                    mood_match = re.search(r"\[MOOD: (.*?)\]", content) 
+                    display_mood = mood_match.group(1) if mood_match else "N/A" 
 
-                with st.expander(f"📅 **{entry['timestamp']}** | Mood & Music: {display_details}"):
                     clean_content = re.sub(r"\[MOOD: .*?\]", "", content).strip()
+                    st.markdown(f"**Mood:** {display_mood}")
                     st.markdown("---")
                     st.markdown(clean_content)

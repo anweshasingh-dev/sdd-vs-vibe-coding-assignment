@@ -90,7 +90,7 @@ with tab_view:
     entries = data.get("entries", [])
     
     if not entries:
-        st.info("Your diary is currently empty. Head over to the 'Log Reflection' tab to create your first entry!")
+        st.info("Your diary is currently empty. Head over to the '📝 Write Entry' tab to create your first entry!")
     else:
         # Filter entries based on search query
         filtered_entries = [

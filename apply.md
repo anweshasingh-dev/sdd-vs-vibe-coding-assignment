@@ -1,4 +1,7 @@
-Please update the `app.py` file to include the following two specific features:
+Please maintain the stripped-down, lightweight version of `app.py` matching the current functional scope.
 
-1. Personalized Branding: Change all references of "Python Diary" to my custom name: "Anwesha's Secret Ledger".
-2. Automatic Timestamp Template: When initializing the 'Write Entry' text area, pre-populate the value property with a dynamic timestamp string using `datetime.now().strftime("%Y-%m-%d %H:%M")` followed by a new line and "Dear Diary,\n\n". Ensure the user can still freely type after it or edit it.
+Key Deployment Constraints:
+1. Ensure the user interface is completely pristine, relying on Streamlit's core native layouts without any arbitrary or custom CSS injection wrappers.
+2. Keep the backend data integration reading and writing cleanly to `diary.json` using the existing backend functions (`load_data`, `add_entry`).
+3. Preserve the dynamic text template pre-population (`YYYY-MM-DD HH:MM` \n `Dear Diary,`) inside the entry creation container.
+4. Ensure the keyword text-filtering search engine and reverse-chronological expander loops under the "Past Entries" log display data seamlessly without throwing visual or logical errors.

@@ -1,24 +1,23 @@
-# Specification: Ultimate Custom Diary App Dashboard
+# Specification: Interactive Personal Diary Dashboard
 
 ## 1. Objective
-Build an elegant, highly customizable, and interactive web dashboard for the Python Diary App that combines robust data metrics with personal aesthetic customization.
+Build a lightweight, clean, and interactive personal diary web application using Streamlit. The application allows the user to write formatted daily journal entries with automatic metadata capturing and view them through a searchable history ledger.
 
-## 2. Comprehensive Feature Layout
+## 2. Core App Layout & Architecture
 
-### Sidebar Features:
-* **App Title & Branding:** Clean header using a diary icon (📔 **Personal Analytics Diary**).
-* **Metrics Dashboard:** Real-time statistics blocks showing total reflections logged and current habit streak 🔥.
-* **Visual Customization (Theme Selector):** A dropdown with options: `Default White`, `Midnight Black`, `Baby Pink`, `Vintage Sepia`, `Space Odyssey`, and `Pop Art`. Custom CSS will inject the matching background and text colors dynamically.
+### A. Sidebar Features (The Dashboard)
+* **Branding Header:** Displays the personalized title: *"📔 Anwesha's Secret Diary"*.
+* **Real-time Metrics:** * Displays the total count of reflections permanently saved to the database.
+  * Tracks and displays the user's current habit streak 🔥 calculated dynamically from their save history.
 
-### Main Panel Features (Styled Multi-Tab Layout):
+### B. Main Application Interface (Two-Tab Navigation)
 
-* **Tab 1: 📝 Log Reflection**
-  * **Auto-Generated Template:** Pre-populates the text box with the current date/time string and a `"Dear Diary, "` greeting (fully editable by the user).
-  * **Mood Selector:** A dropdown or horizontal radio row (😃 Happy, 🛠️ Productive, 😴 Tired, 🧠 Reflective).
-  * **Favorite Song of the Day Section:** A text input field to log a song name, Google link, or Spotify URL for that day, which can play every time you open that entry, you can turn off if you want.
-  * **Rich Text Editing Support:** Standard text area allowing standard Markdown text formatting like emojis, bold (`**`), italics (`*`), and headings (`#`).
-  * **Save Actions:** Clicking "Save to JSON" triggers a success balloon animation (`st.balloons()`).
+#### Tab 1: 📝 Write Entry
+* **Dynamic Content Template:** The input area pre-populates automatically with a live, real-time date-time stamp string followed by *"Dear Diary,"* to ease user friction.
+* **Text Area:** A large text area input for writing daily reflections.
+* **Mood Tagging Selector:** A horizontal radio button selection row containing quick mood emojis (`😃 Happy`, `🛠️ Productive`, etc.) to track daily emotional status.
+* **Action Button:** A prominent *"Save to JSON"* primary execution button that commits the entry and mood tags directly to the backend database file, fires off visual celebrations (balloons), and reloads the display dashboard seamlessly.
 
-* **Tab 2: 📖 Historical Ledger**
-  * A search/filter bar to find past reflections.
-  * Beautiful expandable containers (`st.expander`) displaying historical entries in reverse-chronological order, showcasing the timestamp, mood badge, saved song link, and formatted markdown reflections.
+#### Tab 2: 📖 Past Entries
+* **Search Filtering:** Features an active keyword search bar that queries and screens the historical diary records on the fly.
+* **Reverse-Chronological History Ledger:** Displays entries inside collapsable structural modules (expanders) headered by their original submission dates, displaying cleaned textual data clearly.

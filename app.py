@@ -5,13 +5,13 @@ import re
 
 # Page Configuration
 st.set_page_config(
-    page_title="Anwesha's Secret Ledger",
+    page_title="Anwesha's Secret Diary",
     page_icon="📔", # Updated to diary icon
     layout="centered"
 )
 
 # --- Sidebar Features ---
-st.sidebar.title("📔 Anwesha's Secret Ledger")
+st.sidebar.title("📔 Anwesha's Secret Diary")
 st.sidebar.markdown("---")
 st.sidebar.subheader("Dashboard")
 
@@ -39,7 +39,7 @@ st.sidebar.metric(label="Total Reflections Logged", value=total) # Updated label
 st.sidebar.markdown(f"### Current Habit Streak: {current_streak} 🔥") # Updated label
 
 # --- Main Interface: Tabs ---
-tab_write, tab_view = st.tabs(["📝 Log Reflection", "📖 Historical Ledger"]) # Updated tab titles
+tab_write, tab_view = st.tabs(["📝 Write Entry", "📖 Past Entries"]) # Updated tab titles
 
 with tab_write:
     st.header("New Diary Entry")
@@ -55,7 +55,7 @@ with tab_write:
     )
     
     # Mood Selector
-    mood_options = ["😃 Happy", "🛠️ Productive", "😴 Tired", "🧠 Reflective", "😐 Neutral"]
+    mood_options = ["😃 Happy", "🛠️ Productive", "😴 Tired", "🧠 Reflective", "😐 Neutral", "😔 Sad"]
     selected_mood = st.radio(
         "How are you feeling?",
         mood_options,

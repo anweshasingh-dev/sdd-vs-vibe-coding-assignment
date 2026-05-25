@@ -6,7 +6,7 @@ import re
 # Page Configuration
 st.set_page_config(
     page_title="Anwesha's Secret Diary",
-    page_icon="📔", # Updated to diary icon
+    page_icon="📔", 
     layout="centered"
 )
 
@@ -25,7 +25,6 @@ def get_stats():
     streak = meta.get("current_streak", 0)
     last_date_str = meta.get("last_entry_date", "Never")
     
-    # Check if streak is still active (matches logic in diary.py show_stats)
     if last_date_str != "Never":
         last_date = datetime.strptime(last_date_str, "%Y-%m-%d").date()
         if date.today() > last_date + timedelta(days=1):
@@ -35,20 +34,19 @@ def get_stats():
 
 total, current_streak = get_stats()
 
-st.sidebar.metric(label="Total Reflections Logged", value=total) # Updated label
-st.sidebar.markdown(f"### Current Habit Streak: {current_streak} 🔥") # Updated label
+st.sidebar.metric(label="Total Reflections Logged", value=total) 
+st.sidebar.markdown(f"### Current Habit Streak: {current_streak} 🔥") 
 
 # --- Main Interface: Tabs ---
-tab_write, tab_view = st.tabs(["📝 Write Entry", "📖 Past Entries"]) # Updated tab titles
+tab_write, tab_view = st.tabs(["📝 Write Entry", "📖 Past Entries"]) 
 
 with tab_write:
     st.header("New Diary Entry")
     
-    # Auto-Generated Template
     default_content = f"{datetime.now().strftime('%Y-%m-%d %H:%M')}\nDear Diary,\n\n"
     entry_content = st.text_area(
         "What's on your mind today?",
-        value=default_content, # Pre-populate with template
+        value=default_content, 
         height=300,
         placeholder="Start writing here...",
         key="new_entry_content"
@@ -63,20 +61,14 @@ with tab_write:
         key="mood_selector"
     )
     
-    if st.button("Save to JSON", type="primary"): # Updated button text
+    if st.button("Save to JSON", type="primary"): 
         if entry_content.strip():
-            # Combine mood and song into content for storage in diary.py
             combined_content = f"[MOOD: {selected_mood}]\n\n{entry_content.strip()}"
-            
-            # Use backend function to save data
             add_entry(combined_content)
             
-            # Success message with timestamp and balloons
             st.balloons()
             timestamp = datetime.now().strftime("%H:%M:%S")
             st.success(f"Entry saved successfully with timestamp: {timestamp}!")
-            
-            # Force refresh to update stats and view list
             st.rerun()
         else:
             st.warning("Please enter some text before saving.")
@@ -90,9 +82,8 @@ with tab_view:
     entries = data.get("entries", [])
     
     if not entries:
-        st.info("Your diary is currently empty. Head over to the 'Log Reflection' tab to create your first entry!")
+        st.info("Your diary is currently empty. Head over to the '📝 Write Entry' tab to create your first entry!")
     else:
-        # Filter entries based on search query
         filtered_entries = [
             entry for entry in entries
             if search_query.lower() in entry['content'].lower()
@@ -101,17 +92,14 @@ with tab_view:
         if not filtered_entries:
             st.info("No entries found matching your search query.")
         else:
-            # Display entries in reverse-chronological order
             for entry in reversed(filtered_entries):
-                with st.expander(f"**{entry['timestamp']}**"): # Use expander
+                with st.expander(f"**{entry['timestamp']}**"): 
                     content = entry['content']
 
-                    # Extract Mood and Song using regex
-                    mood_match = re.search(r"\[MOOD: (.*?)\]", content) # Keep mood extraction
-                    display_mood = mood_match.group(1) if mood_match else "N/A" # Keep mood display
+                    mood_match = re.search(r"\[MOOD: (.*?)\]", content) 
+                    display_mood = mood_match.group(1) if mood_match else "N/A" 
 
-                    # Remove mood and song tags from the main content for cleaner display
-                    clean_content = re.sub(r"\[MOOD: .*?\]", "", content)
-                    clean_content = clean_content.strip()
+                    clean_content = re.sub(r"\[MOOD: .*?\]", "", content).strip()
+                    st.markdown(f"**Mood:** {display_mood}")
                     st.markdown("---")
-                    st.markdown(clean_content) # Display cleaned content
+                    st.markdown(clean_content)

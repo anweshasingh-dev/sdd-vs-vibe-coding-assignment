@@ -86,5 +86,3 @@ streamlit run app.py
 * Successfully translated abstract requirements into concrete markdown specification files (`design.md`, `tasks.md`, `streamlit_spec.md`) before writing code.
 * Mastered the balance between rigid architectural planning (SDD) and rapid, LLM-driven feature iteration (Vibe Coding).
 * Leveraged Git branching strategies to cleanly isolate and document different software engineering methodologies.
-
-```

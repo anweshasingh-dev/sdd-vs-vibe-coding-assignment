@@ -37,7 +37,7 @@ The project's architectural backbone is defined by its SDD documentation files:
 │   ├── design.md           # Core architecture and data model specifications
 │   ├── tasks.md            # Step-by-step implementation checklist
 │   └── streamlit_spec.md   # UI wireframe and state management specs
-├── app.py                  # Main Streamlit application entry point
+├── diary.py                  # Main Streamlit application entry point
 ├── storage.json            # Persistent local data store (Diary & Habits)
 └── README.md               # Project documentation
 
@@ -85,3 +85,7 @@ streamlit run diary.py
 * Successfully translated abstract requirements into concrete `markdown` specification documents before writing a single line of code.
 * Mastered the balance between rigid architectural planning (SDD) and fast-paced feature iteration (Vibe Coding).
 * Leveraged Git branching strategies to cleanly isolate and document different software engineering methodologies.
+
+---
+
+**Workshop Certificate:** [![Certificate](https://img.shields.io/badge/Verified-Google_Drive-blue?style=flat&logo=googledrive)](https://drive.google.com/file/d/13Pc-IeH0LEnpyVX-HQYNq7pMQ0DmlQ4V/view?usp=sharing)

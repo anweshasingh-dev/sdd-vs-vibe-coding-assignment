@@ -1,44 +1,48 @@
 # AI-Assisted Diary & Habit Tracker
 
-A Python-based diary application built as a final project for the workshop: **"Future of Software Development: Spec-Driven Development"**. This project serves as a practical exploration of modern development workflows, contrasting structured **Spec-Driven Development (SDD)** with rapid, LLM-forward **"Vibe Coding"**.
+**Workshop Certificate:** [![Certificate](https://img.shields.io/badge/Verified-Google_Drive-blue?style=flat&logo=googledrive)](https://drive.google.com/file/d/13Pc-IeH0LEnpyVX-HQYNq7pMQ0DmlQ4V/view?usp=sharing)
+
+A Python-based diary application built as a final project assignment to demonstrate and compare modern AI-assisted workflows. This repository directly contrasts structured **Spec-Driven Development (SDD)** with rapid, LLM-forward **"Vibe Coding"**, developed as part of the *Future of Software Development with LLMs* workshop.
+
+> **Navigation Guide:** This repository is a comparative study split across branches.
+> * To view the pristine, spec-compliant core, switch to the [sdd_submission](https://github.com/anweshasingh-dev/sdd-vs-vibe-coding-assignment/tree/sdd_submission) branch.
+> * To view the final version featuring the vibe-coded password encryption gateway, switch to the [vibe_coded_submission](https://github.com/anweshasingh-dev/sdd-vs-vibe-coding-assignment/tree/vibe_coded_submission) branch.
 
 ---
 
 ## Overview & Methodology
 
-This repository showcases two distinct development paradigms used to build and extend the application:
+This project showcases two distinct software engineering paradigms across different Git branches to evaluate development efficiency and software robustness:
 
-1. **Spec-Driven Development (SDD):** The core application (diary entries, habit tracking, and Streamlit UI) was built strictly following upfront technical specifications. This ensured high code quality, architectural clarity, and structured progress.
-2. **Vibe Coding:** The security layer (password protection) was iteratively implemented using high-level prompting and rapid AI-assisted execution to quickly prototype and deploy a critical feature.
-
-To clearly demonstrate both approaches, the repository is split into two primary Git branches:
-
-* `sdd_submission`: The pristine, spec-compliant core application.
-* `vibe_coded_submission`: The final version featuring the vibe-coded password integration.
+1. **Spec-Driven Development (SDD):** The core application structure (diary entries, habit tracking, and UI layout) was built by strictly following upfront markdown specifications to ensure explicit architectural planning and clear state management.
+2. **Vibe Coding:** A separate security layer (password encryption gateway) was iteratively implemented using high-level prompting and rapid AI-assisted execution to quickly prototype and deploy the feature.
 
 ---
 
-## Features
+## Features Across Branches
 
-* **Secure Diary Entries:** Create, view, and organize daily thoughts with local persistent storage.
-* **Habit Tracking:** Log and track daily habits alongside your journal entries to monitor personal growth.
-* **Password Protection:** A secure login layer implemented during the vibe-coding phase to restrict unauthorized access.
-* **Modern UI:** A clean, intuitive, and responsive web interface powered by Streamlit.
-* **Local Storage:** Fast and lightweight data persistence using structured JSON files.
+* **Secure Diary Entries:** Create, view, and organize daily thoughts with local persistent storage *(Available on all branches)*.
+* **Habit Tracking:** Log and track daily habits seamlessly alongside your journal entries to monitor personal growth *(Available on all branches)*.
+* **Password Encryption Gateway:** A secure login layer implemented during the vibe-coding phase to restrict unauthorized diary access *(Available on `vibe_coded_submission` branch)*.
+* **Modern UI:** A clean, intuitive web interface powered by Streamlit *(Available on all branches)*.
+* **Local Storage:** Fast and lightweight data persistence using a structured JSON file *(Available on all branches)*.
 
 ---
 
 ## Project Structure
 
-The project's architectural backbone is defined by its SDD documentation files:
+The project's architectural backbone is split between structured specs and functional python modules:
 
 ```text
-├── specs/
-│   ├── design.md           # Core architecture and data model specifications
-│   ├── tasks.md            # Step-by-step implementation checklist
-│   └── streamlit_spec.md   # UI wireframe and state management specs
-├── diary.py                  # Main Streamlit application entry point
-├── storage.json            # Persistent local data store (Diary & Habits)
+├── openspec/               # Specification folder containing initial prompts/guidelines
+├── app.py                  # Streamlit UI configuration and entry point
+├── diary.py                # Core application functionalities & journal logic
+├── diary.json              # Persistent local data store
+├── design.md               # Core architecture and data model specs
+├── tasks.md                # Step-by-step implementation checklist
+├── streamlit_spec.md       # UI wireframe and state management specs
+├── proposal.md             # Project proposal documentation
+├── apply.md                # Updated specifications and tab layouts
 └── README.md               # Project documentation
 
 ```
@@ -56,8 +60,8 @@ Ensure you have Python 3.8+ installed on your system.
 Clone the repository and navigate to the project directory:
 
 ```bash
-git clone https://github.com/your-username/diary-sdd-project.git
-cd diary-sdd-project
+git clone [https://github.com/anweshasingh-dev/sdd-vs-vibe-coding-assignment.git](https://github.com/anweshasingh-dev/sdd-vs-vibe-coding-assignment.git)
+cd sdd-vs-vibe-coding-assignment
 
 ```
 
@@ -70,11 +74,11 @@ pip install streamlit
 
 ### 3. Running the App
 
-To view the final version including the password protection feature, ensure you are on the vibe-coded branch:
+To explore the complete feature set (including the password encryption gateway), checkout the vibe-coded branch and run the application:
 
 ```bash
 git checkout vibe_coded_submission
-streamlit run diary.py
+streamlit run app.py
 
 ```
 
@@ -82,10 +86,6 @@ streamlit run diary.py
 
 ## Workshop Takeaways
 
-* Successfully translated abstract requirements into concrete `markdown` specification documents before writing a single line of code.
-* Mastered the balance between rigid architectural planning (SDD) and fast-paced feature iteration (Vibe Coding).
+* Successfully translated abstract requirements into concrete markdown specification files (`design.md`, `tasks.md`, `streamlit_spec.md`) before writing code.
+* Mastered the balance between rigid architectural planning (SDD) and rapid, LLM-driven feature iteration (Vibe Coding).
 * Leveraged Git branching strategies to cleanly isolate and document different software engineering methodologies.
-
----
-
-**Workshop Certificate:** [![Certificate](https://img.shields.io/badge/Verified-Google_Drive-blue?style=flat&logo=googledrive)](https://drive.google.com/file/d/13Pc-IeH0LEnpyVX-HQYNq7pMQ0DmlQ4V/view?usp=sharing)

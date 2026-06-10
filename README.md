@@ -1,7 +1,5 @@
 # AI-Assisted Diary & Habit Tracker
 
-**Workshop Certificate:** [![Certificate](https://img.shields.io/badge/Verified-Google_Drive-blue?style=flat&logo=googledrive)](https://drive.google.com/file/d/13Pc-IeH0LEnpyVX-HQYNq7pMQ0DmlQ4V/view?usp=sharing)
-
 A Python-based diary application built as a final project assignment to demonstrate and compare modern AI-assisted workflows. This repository directly contrasts structured **Spec-Driven Development (SDD)** with rapid, LLM-forward **"Vibe Coding"**, developed as part of the *Future of Software Development with LLMs* workshop.
 
 > **Navigation Guide:** This repository is a comparative study split across branches.
